@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaVagas.Models
 {
-    class FirebaseAuthResponse
+    public class FirebaseAuthResponse
     {
         public string IdToken { get; set; }          // JWT Token
         public string Email { get; set; }

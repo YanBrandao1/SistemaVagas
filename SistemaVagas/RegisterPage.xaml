@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SistemaVagas.RegisterPage"
+    Title="Cadastro"
+    BackgroundColor="White">
+
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="15"
+        VerticalOptions="Center">
+
+        <Label 
+            Text="Criar uma conta"
+            FontSize="24"
+            HorizontalOptions="Center"
+            TextColor="Black" />
+
+        <Entry 
+            x:Name="EmailEntry"
+            Placeholder="E-mail"
+            Keyboard="Email"
+            TextColor="Black" />
+
+        <Entry 
+            x:Name="PasswordEntry"
+            Placeholder="Senha"
+            IsPassword="True"
+            TextColor="Black"/>
+
+        <Entry 
+            x:Name="ConfirmPasswordEntry"
+            Placeholder="Confirmar Senha"
+            IsPassword="True"
+            TextColor="Black"/>
+
+        <Button 
+            Text="Cadastrar"
+            Clicked="OnRegisterClicked"
+            TextColor="White"/>
+
+        <Label 
+            Text="Já tem uma conta?" 
+            HorizontalOptions="Center" 
+            TextColor="Gray"/>
+
+        <Button 
+            Text="Ir para Login"
+            Clicked="OnGoToLoginClicked"
+            BackgroundColor="Transparent"
+            TextColor="#2E86DE"/>
+    </VerticalStackLayout>
+</ContentPage>

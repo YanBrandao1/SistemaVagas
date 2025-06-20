@@ -9,16 +9,12 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnClick(object sender, EventArgs e)
         {
-            count++;
+            SecureStorage.Remove("user_token");
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            // Redireciona para tela de login
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
     }
 

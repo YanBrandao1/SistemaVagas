@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Arquivo que contém a chave da API do Firebase
+SistemaVagas/SistemaVagas/appsettings.json
+
 # User-specific files
 *.rsuser
 *.suo
