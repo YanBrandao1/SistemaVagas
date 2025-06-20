@@ -55,8 +55,7 @@ namespace SistemaVagas.Services
                 };
 
                 throw new Exception(errorMessage);
-                /*var error = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Erro no login: {error}");*/
+
             }
         }
 
@@ -84,7 +83,16 @@ namespace SistemaVagas.Services
             }
             else
             {
-                throw new Exception($"Erro no cadastro: {jsonResponse}");
+                var firebaseError = JsonConvert.DeserializeObject<FirebaseErrorResponse>(jsonResponse);
+
+                string errorMessage = firebaseError?.error?.message switch
+                {
+                    "EMAIL_EXISTS" => "Já existe uma conta associada a este e-mail.",
+                    "WEAK_PASSWORD : Password should be at least 6 characters" => "A senha deve ter pelo menos 6 caracteres.",
+                    _ => "Erro desconhecido. Verifique os dados e tente novamente."
+                };
+
+                throw new Exception($"Erro no cadastro: {errorMessage}");
             }
         }
     }
