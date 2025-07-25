@@ -12,7 +12,6 @@
             <Entry x:Name="modalidadeEntry" Placeholder="Modalidade" />
             <Entry x:Name="urlEntry" Placeholder="URL da vaga" />
             <Editor x:Name="descricaoEditor" Placeholder="Descrição da vaga" HeightRequest="120"/>
-
             <Button Text="Salvar Vaga" Clicked="OnSalvarClicked" />
         </VerticalStackLayout>
     </ScrollView>

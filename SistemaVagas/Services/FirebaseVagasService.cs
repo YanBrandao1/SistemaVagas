@@ -73,6 +73,24 @@ namespace SistemaVagas.Services
             await httpClient.DeleteAsync($"{databaseUrl}/vagas_pendentes/{id}.json");
         }
 
+        public static async Task<Dictionary<string, Vaga>> ObterVagasComIdsAsync(string databaseUrl)
+        {
+            using var httpClient = new HttpClient();
+            var resp = await httpClient.GetStringAsync(
+                $"{databaseUrl.TrimEnd('/')}/vagas.json");
+            return JsonSerializer
+                .Deserialize<Dictionary<string, Vaga>>(resp)
+                ?? new();
+        }
+
+        public static async Task<bool> DeletarVagaAsync(string id, string databaseUrl)
+        {
+            using var client = new HttpClient();
+            var response = await client.DeleteAsync(
+                $"{databaseUrl.TrimEnd('/')}/vagas/{id}.json");
+            return response.IsSuccessStatusCode;
+        }
+
 
     }
 }

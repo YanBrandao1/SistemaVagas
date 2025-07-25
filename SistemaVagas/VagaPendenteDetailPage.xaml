@@ -1,0 +1,23 @@
+<ContentPage
+    x:Class="SistemaVagas.VagaPendenteDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalhes da Vaga Pendente">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="22"/>
+            <Label Text="{Binding Nivel}" />
+            <Label Text="{Binding Modalidade}" />
+            <Label Text="{Binding Descricao}" />
+
+            <Button Text="Ver Vaga Online" Clicked="OnAbrirLinkClicked" />
+
+            <!-- Botões de ação (apenas para pendentes) -->
+            <HorizontalStackLayout Spacing="20">
+                <Button Text="Aprovar" Clicked="OnAprovarClicked" BackgroundColor="LightGreen"/>
+                <Button Text="Remover" Clicked="OnRejeitarClicked" BackgroundColor="LightCoral"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -12,23 +12,36 @@ namespace SistemaVagas.Services
     public class FirebaseAuthService
     {
         private readonly string apiKey;
+        private static string _idToken;
+        public static string IdToken => _idToken;
+        public static bool IsUserLoggedIn => !string.IsNullOrWhiteSpace(_idToken);
+        public static void Logout()
+        {
+            _idToken = null;
+            SecureStorage.Remove("auth_token");
+        }
+
         HttpClient httpClient = new HttpClient();
 
         public FirebaseAuthService(string apiKey)
         {
             this.apiKey = apiKey;
         }
-       
+
         // Método que realiza o login do usuário
         public async Task<FirebaseAuthResponse> LoginAsync(string email, string password)
         {
-            FirebaseAuthRequest payload = new FirebaseAuthRequest();
-            payload.email = email;
-            payload.password = password;
-            payload.returnSecureToken = true;
+            // Monta o payload
+            var payload = new FirebaseAuthRequest
+            {
+                email = email,
+                password = password,
+                returnSecureToken = true
+            };
 
             var jsonPayload = JsonConvert.SerializeObject(payload);
 
+            // Chama o endpoint do Firebase
             var response = await httpClient.PostAsync(
                 $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={apiKey}",
                 new StringContent(jsonPayload, Encoding.UTF8, "application/json")
@@ -38,13 +51,21 @@ namespace SistemaVagas.Services
 
             if (response.IsSuccessStatusCode)
             {
-                
-                var authResponse = JsonConvert.DeserializeObject<FirebaseAuthResponse>(jsonResponse);
+                // 1) desserializa a resposta
+                var authResponse =
+                    JsonConvert.DeserializeObject<FirebaseAuthResponse>(jsonResponse)!;
+
+                // 2) armazena o token em memória
+                _idToken = authResponse.IdToken;
+
+                // 3) devolve o objeto de resposta
                 return authResponse;
             }
             else
             {
-                var firebaseError = JsonConvert.DeserializeObject<FirebaseErrorResponse>(jsonResponse);
+                // mantém seu tratamento de erro atual
+                var firebaseError =
+                    JsonConvert.DeserializeObject<FirebaseErrorResponse>(jsonResponse);
 
                 string errorMessage = firebaseError?.error?.message switch
                 {
@@ -55,7 +76,6 @@ namespace SistemaVagas.Services
                 };
 
                 throw new Exception(errorMessage);
-
             }
         }
 

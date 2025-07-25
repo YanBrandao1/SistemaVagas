@@ -1,0 +1,39 @@
+<ContentPage
+    x:Class="SistemaVagas.VagasPendentesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:SistemaVagas.Models"
+    Title="Lista de Vagas Pendentes">
+
+    <StackLayout Padding="10" Spacing="8">
+
+        <!-- Cabeçalho -->
+        <Grid BackgroundColor="#EEE" Padding="10"
+              ColumnDefinitions="2*,1*,1*">
+            <Label Text="Nome da Vaga" FontAttributes="Bold" />
+            <Label Text="Nível"        Grid.Column="1" FontAttributes="Bold" />
+            <Label Text="Modalidade"   Grid.Column="2" FontAttributes="Bold" />
+        </Grid>
+
+        <!-- Lista de Vagas -->
+        <CollectionView 
+            x:Name="vagasCollectionView"
+            ItemsSource="{Binding Vagas}"
+            Margin="0,2,0,0"
+            SelectionMode="Single"
+            SelectionChanged="OnVagaSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
+                          ColumnDefinitions="2*,1*,1*"
+                          RowSpacing="4">
+                        <Label Text="{Binding Nome}" FontAttributes="Bold" />
+                        <Label Text="{Binding Nivel}" Grid.Column="1" />
+                        <Label Text="{Binding Modalidade}" Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>

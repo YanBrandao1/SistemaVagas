@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
-using SistemaVagas; // certifique-se de que LoginPage está nesse namespace
+using Microsoft.Maui.Storage;           // para SecureStorage
+using SistemaVagas.Services;            // para FirebaseAuthService
 using System;
-using System.Threading.Tasks;
 
 namespace SistemaVagas
 {
@@ -11,7 +11,7 @@ namespace SistemaVagas
         {
             InitializeComponent();
 
-            // Página temporária para evitar erro antes do carregamento assíncrono
+            // Tela temporária de loading
             MainPage = new ContentPage
             {
                 Content = new ActivityIndicator
@@ -22,7 +22,7 @@ namespace SistemaVagas
                 }
             };
 
-            // Inicia a verificação do login de forma assíncrona
+            // Verifica login e define a página raiz
             CheckUserLogged();
         }
 
@@ -30,22 +30,26 @@ namespace SistemaVagas
         {
             try
             {
-                var token = await SecureStorage.GetAsync("user_token");
+                // <-- Aqui: trocamos "user_token" por "auth_token"
+                var token = await SecureStorage.GetAsync("auth_token");
 
-                if (!string.IsNullOrEmpty(token))
+                if (!string.IsNullOrWhiteSpace(token))
                 {
-                    // Usuário logado → vai para AppShell
+                    // Se você tiver um método para restaurar em memória:
+                    // FirebaseAuthService.SetToken(token);
+
+                    // Usuário logado → mostra o AppShell (dashboard)
                     MainPage = new AppShell();
                 }
                 else
                 {
-                    // Não logado → vai para LoginPage com navegação
+                    // Não logado → vai para a tela de Login
                     MainPage = new NavigationPage(new LoginPage());
                 }
             }
-            catch (Exception)
+            catch
             {
-                // Qualquer erro no SecureStorage → vai para LoginPage
+                // Qualquer falha no SecureStorage → Login
                 MainPage = new NavigationPage(new LoginPage());
             }
         }

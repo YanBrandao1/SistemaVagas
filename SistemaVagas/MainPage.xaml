@@ -1,36 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SistemaVagas.MainPage">
+﻿<ContentPage 
+    x:Class="SistemaVagas.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Sistema de Vagas e Oportunidades IC">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+    <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Label
-                Text="Olá, Mundo!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <!-- 1) Ir para Vagas Pendentes -->
+        <Button
+      Text="Vagas Pendentes"
+      Clicked="OnVagasPendentesClicked" />
 
-            <Label
-                Text="Clique no botão abaixo para sair da sua conta"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+        <!-- 2) Adicionar Nova Vaga -->
+        <Button
+      Text="Adicionar Vaga"
+      Clicked="OnAdicionarVagaClicked" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Sair" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnClick"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- 3) Logout -->
+        <Button
+      Text="Sair"
+      Clicked="OnLogoutClicked" />
 
+        <!-- 4) Deletar vagas antigas -->
+        <Button
+      Text="Gerenciar Vagas"
+      Clicked="OnGerenciarVagasClicked" />
+
+    </VerticalStackLayout>
 </ContentPage>

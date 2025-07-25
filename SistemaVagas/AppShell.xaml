@@ -10,12 +10,18 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="home" />
 
     <ShellContent
         Title="Vagas"
         Route="VagasPage"
         Icon="icon_vagas.png"
         ContentTemplate="{DataTemplate local:VagasPage}" />
+
+    <ShellContent
+        Title="Nova Vaga"
+        Route="NovaVagaPage"
+        Icon="icon_vagas.png"
+        ContentTemplate="{DataTemplate local:NovaVagaPage}" />
 
 </Shell>
