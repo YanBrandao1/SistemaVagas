@@ -5,7 +5,7 @@
              Title="Login">
     
     <VerticalStackLayout Padding="30" Spacing="20">
-        <Label Text="Bem-vindo!" FontSize="32" HorizontalOptions="Center"/>
+        <Label Text="Vagas e Oportunidades IC" FontSize="32" HorizontalOptions="Center"/>
 
         <Entry x:Name="EmailEntry"
                Placeholder="Email"
@@ -25,5 +25,9 @@
 
         <Button Text="Cadastrar"
             Clicked="OnRegisterClicked"/>
+
+        <Button Text="Seguir sem login"
+            Clicked="OnSkipLoginClicked"/>
+        
     </VerticalStackLayout>
 </ContentPage>

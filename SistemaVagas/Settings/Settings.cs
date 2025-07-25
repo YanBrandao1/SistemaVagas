@@ -16,6 +16,7 @@ namespace SistemaVagas.Settings
     public class FirebaseSettings
     {
         public string ApiKey { get; set; }
+        public string DatabaseUrl { get; set; }
     }
     public class FirebaseErrorResponse
     {

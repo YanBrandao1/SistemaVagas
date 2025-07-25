@@ -78,10 +78,17 @@
 	  <MauiXaml Update="RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="VagaDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="VagasPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-  		<MauiAsset Include="appsettings.json" />
+		<!-- Inclui o appsettings.json no pacote de assets do MAUI -->
+		<MauiAsset Include="appsettings.json" />
 	</ItemGroup>
 	
 </Project>

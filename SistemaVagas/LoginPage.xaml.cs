@@ -56,5 +56,11 @@ public partial class LoginPage : ContentPage
     {
         Application.Current.MainPage = new RegisterPage();
     }
+    async void OnSkipLoginClicked(object sender, EventArgs e)
+    {
+        Application.Current.MainPage = new AppShell();
+
+        await Shell.Current.GoToAsync("//VagasPage");
+    }
 
 }

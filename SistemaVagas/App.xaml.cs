@@ -1,4 +1,9 @@
-﻿namespace SistemaVagas
+﻿using Microsoft.Maui.Controls;
+using SistemaVagas; // certifique-se de que LoginPage está nesse namespace
+using System;
+using System.Threading.Tasks;
+
+namespace SistemaVagas
 {
     public partial class App : Application
     {
@@ -6,6 +11,18 @@
         {
             InitializeComponent();
 
+            // Página temporária para evitar erro antes do carregamento assíncrono
+            MainPage = new ContentPage
+            {
+                Content = new ActivityIndicator
+                {
+                    IsRunning = true,
+                    VerticalOptions = LayoutOptions.Center,
+                    HorizontalOptions = LayoutOptions.Center
+                }
+            };
+
+            // Inicia a verificação do login de forma assíncrona
             CheckUserLogged();
         }
 
@@ -17,25 +34,20 @@
 
                 if (!string.IsNullOrEmpty(token))
                 {
-                    // Usuário está logado
+                    // Usuário logado → vai para AppShell
                     MainPage = new AppShell();
                 }
                 else
                 {
-                    // Não está logado
+                    // Não logado → vai para LoginPage com navegação
                     MainPage = new NavigationPage(new LoginPage());
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Se deu erro no SecureStorage (emuladores antigos ou restrições)
+                // Qualquer erro no SecureStorage → vai para LoginPage
                 MainPage = new NavigationPage(new LoginPage());
             }
         }
-
-        /*protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
-        }*/
     }
 }
