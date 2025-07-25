@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="SistemaVagas.VagasPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -6,32 +5,31 @@
     xmlns:models="clr-namespace:SistemaVagas.Models"
     Title="Lista de Vagas">
 
-    <StackLayout Padding="10" Spacing="0">
+    <StackLayout Padding="10" Spacing="8">
 
-        <Grid BackgroundColor="#EEE" Padding="5"
-            ColumnDefinitions="3*,1*,1*,1*">
-            <Label Text="Nome da Vaga"       FontAttributes="Bold" />
-            <Label Text="Nível"               Grid.Column="1" FontAttributes="Bold" />
-            <Label Text="Modalidade"          Grid.Column="2" FontAttributes="Bold" />
-            <Label Text="Localidade (Sigla)"  Grid.Column="3" FontAttributes="Bold" />
+        <!-- Cabeçalho -->
+        <Grid BackgroundColor="#EEE" Padding="10"
+              ColumnDefinitions="2*,1*,1*">
+            <Label Text="Nome da Vaga" FontAttributes="Bold" />
+            <Label Text="Nível"        Grid.Column="1" FontAttributes="Bold" />
+            <Label Text="Modalidade"   Grid.Column="2" FontAttributes="Bold" />
         </Grid>
 
+        <!-- Lista de Vagas -->
         <CollectionView 
             x:Name="vagasCollectionView"
             ItemsSource="{Binding Vagas}"
             Margin="0,2,0,0"
             SelectionMode="Single"
-            SelectionChanged="OnVagaSelected">  
+            SelectionChanged="OnVagaSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="8"
-                        ColumnDefinitions="3*,1*,1*,1*"
-                        RowSpacing="4">
-                        <Label Text="{Binding Nome}" 
-                               FontAttributes="Bold"/>
-                        <Label Text="{Binding Nivel}"              Grid.Column="1" />
-                        <Label Text="{Binding Modalidade}"         Grid.Column="2" />
-                        <Label Text="{Binding LocalidadeSigla}"    Grid.Column="3" />
+                    <Grid Padding="10"
+                          ColumnDefinitions="2*,1*,1*"
+                          RowSpacing="4">
+                        <Label Text="{Binding Nome}" FontAttributes="Bold" />
+                        <Label Text="{Binding Nivel}" Grid.Column="1" />
+                        <Label Text="{Binding Modalidade}" Grid.Column="2" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
