@@ -3,7 +3,7 @@
   x:Class="SistemaVagas.VagaDetailPage"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  Title="{Binding Nome}">
+  Title="Detalhes da Vaga">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
@@ -17,9 +17,6 @@
 
             <Label Text="Modalidade:" FontAttributes="Bold" />
             <Label Text="{Binding Modalidade}" />
-
-            <Label Text="Localidade (Sigla):" FontAttributes="Bold" />
-            <Label Text="{Binding LocalidadeSigla}" />
 
             <Label Text="Descrição:" FontAttributes="Bold" />
             <Label Text="{Binding Descricao}" LineBreakMode="WordWrap" />
